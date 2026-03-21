@@ -1,0 +1,123 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { Image } from 'astro:assets';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import img_placeholder1 from '../assets/blog-placeholder-1.jpg';
+import img_placeholder2 from '../assets/blog-placeholder-2.jpg';
+import img_placeholder3 from '../assets/blog-placeholder-3.jpg';
+import img_placeholder4 from '../assets/blog-placeholder-4.jpg';
+import img_placeholder5 from '../assets/blog-placeholder-5.jpg';
+
+const images = {
+  img_placeholder1,
+  img_placeholder2,
+  img_placeholder3,
+  img_placeholder4,
+  img_placeholder5,
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				width: calc(50% - 1rem);
+			}
+			ul li * {
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
+			}
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
+				}
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+				ul li:first-child {
+					margin-bottom: 0;
+				}
+				ul li:first-child .title {
+					font-size: 1.563em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Bağlantılar</h1>
+			<p>
+				Atölye çalışmalarımız kapsamında yaptığımız paylaşımları burada bulabilirsiniz. 
+			</p>
+			
+			<section>
+				<ul>
+					<li>
+						<a href="https://link.yya-hamburg.club/public/lists/rr4zlif3966zbrh3961ewhjo" target="_blank">
+							<h4 class="title">Kaynaklar</h4><br>
+							<Image src={images.img_placeholder2} alt="Kaynaklar" />
+						</a>
+							<p>Tavsiye ettiğimiz kitap, söyleşi benzeri kaynaklar</p>
+					</li>
+					<li>
+						<a href="https://link.yya-hamburg.club/public/lists/bdjy94rm1mwyt5j8mesw9hff" target="_blank">
+							<h4 class="title">Yazılar</h4><br>
+							<Image src={images.img_placeholder3} alt="Yazılar" />
+						</a>
+							<p>Katılımcılarımızın paylaştığı yazılar</p>
+					</li>
+					<li>
+						<a href="https://link.yya-hamburg.club/public/lists/jyue35yzrt4cdk7owltlxed0" target="_blank">
+							<h4 class="title">Haber ve Duyurular</h4><br>
+							<Image src={images.img_placeholder4} alt="Haber ve Duyurular" />
+						</a>
+							<p>Atölye çalışmaları hakkında son gelişmeler</p>
+					</li>
+				</ul>
+			</section>
+
+
+		</main>
+		<Footer />
+	</body>
+</html>
