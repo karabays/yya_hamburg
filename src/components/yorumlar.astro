@@ -1,0 +1,149 @@
+---
+// src/components/Yorumlar.astro
+
+// Katılımcı verilerini bir dizi olarak tanımlıyoruz.
+const yorumlarListesi = [
+  {
+    isim: "Serkan",
+    yorum: "“İlham S-Bahn gibidir. Beklerseniz gelmez.”",
+    konum: "Pinneberg"
+  },
+  {
+    isim: "Sabri",
+    yorum: "“Zorluklara rağmen gerçekleştirilen karlı bir kafe buluşması olur, güzel şeyler anımsatır belki.”",
+    konum: "Hamburg"
+  },
+  {
+    isim: "Yıldız",
+    yorum: "“Mesela,  ilk yazma konu başlığı 'Neden Yazıyorum' ben bu soruyu hiçbir zaman kendime sormamışım. Aklıma bile gelmemiş, şimdi bunu düşünüyorum, kendime bunu soruyorum kaç gündür. Bunu düşünüp, bu konuya yoğunlaşmak, resmen hafızam canlandı.'”",
+    konum: "Hamburg"
+  },
+  {
+    isim: "Özlem",
+    yorum: "“Sınırların, mesafelerin ve farklılıkların ötesinde sizi bir araya getiren şey aynı heyecan, aynı üretme arzusu. Bu atölye, birlikte üretmenin ne kadar güçlü ve anlamlı olabileceğini hatırlatıyor. Her fikir, her katkı bir diğerini besliyor. Ortaya harika bir şey çıkıyor. İyi ki…”",
+    konum: "Hamburg"
+  },
+  {
+    isim: "Özlen",
+    yorum: "“Hamburg Yaratıcı Yazı Atölyesi'nin kapısı aralanır aralanmaz, bir anda sıcacık kelimeler, fikirler, cümleler birbirine karışıyor, herkes kendi iç sesini ararken aynı anda birbirinin sesine de kulak veriyor. Durup etrafa bakıyorum. Her köşede başka bir dünya kurulmuş gibi. Birinin defterinden gizemli bir sahne, diğerinin bilgisayarında hızla akan bir diyalog, bir başkasının gözlerinde henüz yazılmamış bir hikâyenin kıvılcımı, birinin kurgusu hazır diğerinin yazı için bir fotoğrafı. Ve içimden şu cümle yükseliyor; “Herkes çok yetenekli.” Bu cümle, bir övgüden çok daha fazlası. Gerçek bir tespit, bir hayranlık.”",
+    konum: "Pinneberg"
+  }
+];
+---
+
+<section class="yorum-section">
+  <div class="konteyner">
+    <h2 class="section-baslik">Katılımcı Yorumları</h2>
+    
+    <div class="yorum-grid">
+      {yorumlarListesi.map((item) => (
+        // Her bir yorum için kart oluşturuluyor
+        <div class="yorum-kart">
+          <h3 class="katilimci-isim">{item.isim}</h3>
+          <blockquote class="yorum-metin">
+            <p>{item.yorum}</p>
+          </blockquote>
+          <span class="konum">— {item.konum}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Temel Bölüm Stilleri */
+  .yorum-section {
+    padding: 4rem 1rem;
+    background-color: #f8fafc; /* Hafif gri arka plan */
+    font-family: sans-serif; /* Görseldeki gibi sade bir font */
+  }
+
+  .konteyner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-baslik {
+    text-align: center;
+    color: #334155;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+
+  /* Grid Yapısı (Yan yana dizilim) */
+  .yorum-grid {
+    display: grid;
+    /* Mobilde tek sütun, 768px'den büyükse 2, 1024px'den büyükse 4 sütun */
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem; /* Kutular arası boşluk */
+  }
+
+  /* Tablet ve Masaüstü için Medya Sorguları */
+  @media (min-width: 1000px) {
+    .yorum-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 6000px) {
+    .yorum-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* Yorum Kartı Stilleri (Görselin Kalbi) */
+  .yorum-kart {
+    background-color: white;
+    padding: 2.5rem 2rem;
+    border-radius: 12px; /* Yuvarlak köşeler */
+    
+    /* Görseldeki o yumuşak gölge efekti */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* İçerikleri dikey olarak ortalamak için Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Yatayda ortala */
+    text-align: center; /* Metni ortala */
+    
+    transition: transform 0.2s ease-in-out; /* Hafif hover efekti için */
+  }
+
+  /* Hover efekti (isteğe bağlı ama şık durur) */
+  .yorum-kart:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Kart İçi Metin Stilleri */
+  .katilimci-isim {
+    color: #1e293b; /* Koyu lacivert/gri */
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .yorum-metin {
+    margin: 0;
+    padding: 0;
+    color: #475569; /* Orta gri metin */
+    font-style: normal; /* Tırnak işaretleri metne dahil olduğu için italic yapmadık */
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex-grow: 1; /* Yorum kısa olsa bile kartın boyunu korumasını sağlar */
+    display: flex;
+    align-items: center; /* Yorum metnini dikeyde ortalar */
+  }
+
+  .yorum-metin p {
+    margin: 0;
+  }
+
+  .konum {
+    display: block;
+    margin-top: 1.5rem;
+    color: #64748b; /* Daha açık gri */
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+</style>
