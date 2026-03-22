@@ -2,7 +2,21 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { Image } from 'astro:assets';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import img_placeholder1 from '../assets/blog-placeholder-1.jpg';
+import img_placeholder2 from '../assets/blog-placeholder-2.jpg';
+import img_placeholder3 from '../assets/blog-placeholder-3.jpg';
+import img_placeholder4 from '../assets/blog-placeholder-4.jpg';
+import img_placeholder5 from '../assets/blog-placeholder-5.jpg';
+
+const images = {
+  img_placeholder1,
+  img_placeholder2,
+  img_placeholder3,
+  img_placeholder4,
+  img_placeholder5,
+};
 import Yorumlar from '../components/yorumlar.astro';
 ---
 
